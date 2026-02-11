@@ -68,7 +68,7 @@ update_table() {
     {
       if ($pkcol == pk) {
         for (i = 1; i <= n; i++) {
-          if (i != pkcol && u[i-1] != "") $i = u[i-1]
+          if (i != pkcol && u[i] != "") $i = u[i]
         }
       }
       print

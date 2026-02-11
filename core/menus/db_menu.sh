@@ -11,7 +11,7 @@ db_menu() {
       4 "Insert Into Table" \
       5 "Select From Table" \
       6 "Delete From Table" \
-      7 "Update Table" \
+      7 "Update Record" \
       0 "Back") || break
 
     case "$choice" in
