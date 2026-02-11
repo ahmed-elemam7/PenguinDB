@@ -3,14 +3,6 @@
 APP_NAME="PenguinDB"
 APP_VER="v1.0"
 
-PENGUIN_ASCII='
-    _~_
-   (o o)
-  /  V  \
- /(  _  )\
-   ^^ ^^
-'
-
 require_dialog() {
   if ! command -v dialog >/dev/null 2>&1; then
     echo "Error: dialog is not installed."
@@ -18,14 +10,6 @@ require_dialog() {
     exit 1
   fi
 }
-
-ui_splash() {
-  require_dialog
-  dialog --clear --title "$APP_NAME" --infobox "$PENGUIN_ASCII\n$APP_NAME $APP_VER\n\nStarting..." 15 50
-  sleep 1
-  clear
-}
-
 ui_msg() {
   require_dialog
   dialog --clear --title "$APP_NAME" --msgbox "$1" 10 70
