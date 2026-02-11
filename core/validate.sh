@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+is_valid_type() {
+  case "$1" in
+    int|string|float) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+check_value_type() {
+  local type="$1"
+  local value="$2"
+
+  case "$type" in
+    int)   [[ "$value" =~ ^-?[0-9]+$ ]] ;;
+    float) [[ "$value" =~ ^-?[0-9]+([.][0-9]+)?$ ]] ;;
+    string) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+# Globals after read_meta:
+# cols[], types[], pkIndex
+read_meta() {
+  local meta_file="$1"
+  cols=()
+  types=()
+  pkIndex=-1
+
+  local i=0
+  while IFS=: read -r col type pk; do
+    cols+=("$col")
+    types+=("$type")
+    if [[ "$pk" == "1" ]]; then
+      pkIndex="$i"
+    fi
+    ((i++))
+  done < "$meta_file"
+}
+
+pk_exists() {
+  local data_file="$1"
+  local pkIndex="$2"
+  local pkValue="$3"
+
+  awk -F"$DELIM" -v idx="$((pkIndex + 1))" -v val="$pkValue" '
+    ($idx == val) { found = 1 }
+    END { exit(found ? 0 : 1) }
+  ' "$data_file"
+}
