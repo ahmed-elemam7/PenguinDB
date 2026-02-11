@@ -40,14 +40,13 @@ ui_menu() {
 }
 
 ui_textbox() {
-  # ui_textbox "title" "file"
   require_dialog
   dialog --clear --title "$1" --textbox "$2" 20 90
 }
 
 normalize_name() {
-  # Replace spaces with underscore
-  echo "$1" | tr ' ' '_'
+  local name="$(echo "$1" | sed 's/^ *//; s/ *$//')"
+  echo "$name" | tr ' ' '_'
 }
 
 valid_name() {
@@ -108,7 +107,6 @@ build_table_menu_items() {
 }
 
 format_table_to_file() {
-  # format_table_to_file meta_file data_file out_file
   local meta_file="$1"
   local data_file="$2"
   local out_file="$3"
