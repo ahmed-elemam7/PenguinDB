@@ -6,7 +6,6 @@ connect_database(){
     return
   fi
 
-  # Build menu items
   items=($(build_db_menu_items))
   if [ "${#items[@]}" -eq 0 ]; then
     ui_msg "No databases found."

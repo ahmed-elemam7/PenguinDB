@@ -23,7 +23,6 @@ ui_error(){
 
 ui_input(){
   require_dialog
-  # ui_input "prompt" "default"
   dialog --clear --stdout --title "$APP_NAME" --inputbox "$1" 10 70 "${2:-}"
 }
 
@@ -34,7 +33,6 @@ ui_yesno(){
 }
 
 ui_menu(){
-  # ui_menu "prompt" tag1 item1 tag2 item2 ...
   require_dialog
   local prompt="$1"; shift
   dialog --clear --stdout --title "$APP_NAME" --menu "$prompt" 18 70 10 "$@"
