@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-create_database() {
+create_database(){
   while true; do
     db=$(ui_input "Enter database name (empty = cancel):")
     [ -z "$db" ] && return

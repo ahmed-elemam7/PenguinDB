@@ -7,17 +7,14 @@ source "$CORE_DIR/config.sh"
 source "$CORE_DIR/utils.sh"
 source "$CORE_DIR/validate.sh"
 
-# Menus
 source "$CORE_DIR/menus/main_menu.sh"
 source "$CORE_DIR/menus/db_menu.sh"
 
-# Main actions
 source "$CORE_DIR/main/create_database.sh"
 source "$CORE_DIR/main/list_databases.sh"
 source "$CORE_DIR/main/connect_database.sh"
 source "$CORE_DIR/main/drop_database.sh"
 
-# DB actions
 source "$CORE_DIR/db/create_table.sh"
 source "$CORE_DIR/db/list_tables.sh"
 source "$CORE_DIR/db/drop_table.sh"

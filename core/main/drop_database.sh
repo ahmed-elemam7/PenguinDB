@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-drop_database() {
+drop_database(){
   if [ ! -d "$DATA_DIR" ] || [ -z "$(ls -A "$DATA_DIR" 2>/dev/null)" ]; then
     ui_msg "No databases to drop."
     return

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-list_databases() {
+list_databases(){
   if [ ! -d "$DATA_DIR" ] || [ -z "$(ls -A "$DATA_DIR" 2>/dev/null)" ]; then
     ui_msg "No databases found."
     return

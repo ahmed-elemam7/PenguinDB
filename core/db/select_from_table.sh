@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-select_from_table() {
+select_from_table(){
   local db="$1"
   local mdir; mdir="$(meta_dir "$db")"
 

@@ -3,86 +3,86 @@
 APP_NAME="PenguinDB"
 APP_VER="v1.0"
 
-require_dialog() {
+require_dialog(){
   if ! command -v dialog >/dev/null 2>&1; then
     echo "Error: dialog is not installed."
     echo "Install: sudo apt update && sudo apt install dialog"
     exit 1
   fi
 }
-ui_msg() {
+
+ui_msg(){
   require_dialog
   dialog --clear --title "$APP_NAME" --msgbox "$1" 10 70
 }
 
-ui_error() {
+ui_error(){
   require_dialog
   dialog --clear --title "$APP_NAME - Error" --msgbox "$1" 10 70
 }
 
-ui_input() {
+ui_input(){
   require_dialog
   # ui_input "prompt" "default"
   dialog --clear --stdout --title "$APP_NAME" --inputbox "$1" 10 70 "${2:-}"
 }
 
-ui_yesno() {
+ui_yesno(){
   require_dialog
   dialog --clear --title "$APP_NAME - Confirm" --yesno "$1" 10 70
   return $?
 }
 
-ui_menu() {
+ui_menu(){
   # ui_menu "prompt" tag1 item1 tag2 item2 ...
   require_dialog
   local prompt="$1"; shift
   dialog --clear --stdout --title "$APP_NAME" --menu "$prompt" 18 70 10 "$@"
 }
 
-ui_textbox() {
+ui_textbox(){
   require_dialog
   dialog --clear --title "$1" --textbox "$2" 20 90
 }
 
-normalize_name() {
+normalize_name(){
   local name="$(echo "$1" | sed 's/^ *//; s/ *$//')"
   echo "$name" | tr ' ' '_'
 }
 
-valid_name() {
+valid_name(){
   [[ "$1" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]]
 }
 
-db_path() {
+db_path(){
   echo "$DATA_DIR/$1"
 }
 
-meta_dir() {
+meta_dir(){
   echo "$(db_path "$1")/meta"
 }
 
-table_data() {
+table_data(){
   echo "$(db_path "$1")/$2.data"
 }
 
-table_meta() {
+table_meta(){
   echo "$(meta_dir "$1")/$2.meta"
 }
 
-db_exists() {
+db_exists(){
   [[ -d "$(db_path "$1")" ]]
 }
 
-table_exists() {
+table_exists(){
   [[ -f "$(table_meta "$1" "$2")" && -f "$(table_data "$1" "$2")" ]]
 }
 
-value_has_delim() {
+value_has_delim(){
   [[ "$1" == *"$DELIM"* ]]
 }
 
-# Build menu items from directory names
-build_db_menu_items() {
+build_db_menu_items(){
   local items=()
   local d
   for d in "$DATA_DIR"/*; do
@@ -93,7 +93,7 @@ build_db_menu_items() {
   echo "${items[@]}"
 }
 
-build_table_menu_items() {
+build_table_menu_items(){
   local db="$1"
   local mdir; mdir="$(meta_dir "$db")"
   local items=()
@@ -106,7 +106,7 @@ build_table_menu_items() {
   echo "${items[@]}"
 }
 
-format_table_to_file() {
+format_table_to_file(){
   local meta_file="$1"
   local data_file="$2"
   local out_file="$3"

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-list_tables() {
+list_tables(){
   local db="$1"
   local mdir
   mdir="$(meta_dir "$db")"

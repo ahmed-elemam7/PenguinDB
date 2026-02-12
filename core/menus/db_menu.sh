@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-db_menu() {
+db_menu(){
   local db="$1"
 
   while true; do

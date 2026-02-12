@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-drop_table() {
+drop_table(){
   local db="$1"
   local mdir; mdir="$(meta_dir "$db")"
 

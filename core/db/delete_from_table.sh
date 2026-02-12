@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-delete_from_table() {
+delete_from_table(){
   local db="$1"
   local mdir; mdir="$(meta_dir "$db")"
 

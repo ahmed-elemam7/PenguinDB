@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-create_table() {
+create_table(){
   local db="$1"
   local table cols_count
 

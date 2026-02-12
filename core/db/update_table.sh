@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-update_table() {
+update_table(){
   local db="$1"
   local mdir; mdir="$(meta_dir "$db")"
 
@@ -33,7 +33,7 @@ update_table() {
 
   for i in "${!cols[@]}"; do
     if [[ "$i" -eq "$pkIndex" ]]; then
-      updates+=("") # PK cannot be updated
+      updates+=("")
       continue
     fi
 

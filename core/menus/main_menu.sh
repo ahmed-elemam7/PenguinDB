@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-main_menu() {
+main_menu(){
   while true; do
     choice=$(ui_menu "$APP_NAME - Main Menu" \
       1 "Create Database" \

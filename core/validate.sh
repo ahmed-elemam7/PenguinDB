@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-is_valid_type() {
+is_valid_type(){
   case "$1" in
     int|string|float) return 0 ;;
     *) return 1 ;;
   esac
 }
 
-check_value_type() {
+check_value_type(){
   local type="$1"
   local value="$2"
 
@@ -19,9 +19,7 @@ check_value_type() {
   esac
 }
 
-# Globals after read_meta:
-# cols[], types[], pkIndex
-read_meta() {
+read_meta(){
   local meta_file="$1"
   cols=()
   types=()
@@ -38,7 +36,7 @@ read_meta() {
   done < "$meta_file"
 }
 
-pk_exists() {
+pk_exists(){
   local data_file="$1"
   local pkIndex="$2"
   local pkValue="$3"

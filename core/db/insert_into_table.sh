@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-insert_into_table() {
+insert_into_table(){
   local db="$1"
   local mdir; mdir="$(meta_dir "$db")"
 
@@ -29,7 +29,7 @@ insert_into_table() {
   for i in "${!cols[@]}"; do
     while true; do
       value=$(ui_input "Value for ${cols[$i]} (${types[$i]}):")
-      # PK cannot be empty
+      
       if [[ "$i" -eq "$pkIndex" && -z "$value" ]]; then
         ui_error "Primary key cannot be empty."
         continue
