@@ -63,14 +63,13 @@ create_table(){
     done
 
     pkflag=0
-    if ui_yesno "Make '$col' the Primary Key? (only one PK)"; then
-      if [[ "$pk_chosen" -eq 1 ]]; then
-        ui_error "Primary key already chosen. This column will NOT be PK."
-      else
-        pkflag=1
-        pk_chosen=1
-      fi
+    if [[ "$pk_chosen" -eq 0 ]]; then
+    if ui_yesno "Make '$col' the Primary Key?"; then
+    pkflag=1
+    pk_chosen=1
     fi
+    fi
+
 
     echo "${col}:${dtype}:${pkflag}" >> "$meta_file"
   done
