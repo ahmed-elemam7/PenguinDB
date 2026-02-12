@@ -24,5 +24,5 @@ source "$CORE_DIR/db/delete_from_table.sh"
 source "$CORE_DIR/db/update_table.sh"
 
 mkdir -p "$DATA_DIR"
-
+require_dialog
 main_menu
